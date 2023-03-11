@@ -7,8 +7,7 @@ import java.util.List;
 
 public class Flight {
     private String id;
-    private String origin;
-    private String destination;
+    private Route route;
     private LocalDateTime departureTime;
     private LocalDateTime arrivalTime;
     private int availableSeats;
@@ -21,11 +20,10 @@ public class Flight {
         this.isAvailable = true;
     }
 
-    public Flight(String id, String origin, String destination,
-                  LocalDateTime departureTime, LocalDateTime arrivalTime, int availableSeats, BigDecimal price) {
+    public Flight(String id, Route route, LocalDateTime departureTime,
+                  LocalDateTime arrivalTime, int availableSeats, BigDecimal price) {
         this(id);
-        this.origin = origin;
-        this.destination = destination;
+        this.route = route;
         this.departureTime = departureTime;
         this.arrivalTime = arrivalTime;
         this.availableSeats = availableSeats;
@@ -46,12 +44,8 @@ public class Flight {
         return id;
     }
 
-    public String getOrigin() {
-        return origin;
-    }
-
-    public String getDestination() {
-        return destination;
+    public Route getRoute() {
+        return route;
     }
 
     public LocalDateTime getDepartureTime() {
@@ -78,12 +72,8 @@ public class Flight {
         this.isAvailable = available;
     }
 
-    public void setOrigin(String origin) {
-        this.origin = origin;
-    }
-
-    public void setDestination(String destination) {
-        this.destination = destination;
+    public void setRoute(Route route) {
+        this.route = route;
     }
 
     public void setDepartureTime(LocalDateTime departureTime) {

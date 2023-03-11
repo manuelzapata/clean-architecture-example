@@ -13,6 +13,7 @@ import java.util.List;
 
 import org.example.domain.application.interfaces.FlightRepository;
 import org.example.domain.model.Flight;
+import org.example.domain.model.Route;
 
 public class InMemoryFlightRepository implements FlightRepository {
 
@@ -25,11 +26,11 @@ public class InMemoryFlightRepository implements FlightRepository {
 
 
     @Override
-    public List<Flight> search(String origin, String destination, LocalDate departureDate) {
+    public List<Flight> search(Route route, LocalDate departureDate) {
         try {
             PreparedStatement statement = connection.prepareStatement("SELECT * FROM flights WHERE origin = ? AND destination = ? AND departure_time >= ? AND departure_time <= ?");
-            statement.setString(1, origin);
-            statement.setString(2, destination);
+            statement.setString(1, route.getOrigin());
+            statement.setString(2, route.getDestination());
             statement.setTimestamp(3, Timestamp.valueOf(departureDate.atStartOfDay()));
             statement.setTimestamp(4, Timestamp.valueOf(departureDate.atTime(23, 59)));
 
@@ -38,8 +39,9 @@ public class InMemoryFlightRepository implements FlightRepository {
             List<Flight> flights = new ArrayList<>();
             while (resultSet.next()) {
                 Flight flight = new Flight(resultSet.getString("id"));
-                flight.setOrigin(resultSet.getString("origin"));
-                flight.setDestination(resultSet.getString("destination"));
+                Route foundRoute = new Route(resultSet.getString("origin"),
+                                        resultSet.getString("destination"));
+                flight.setRoute(foundRoute);
                 flight.setDepartureTime(resultSet.getTimestamp("departure_time").toLocalDateTime());
                 flight.setArrivalTime(resultSet.getTimestamp("arrival_time").toLocalDateTime());
                 flight.setAvailableSeats(resultSet.getInt("available_seats"));
@@ -56,8 +58,8 @@ public class InMemoryFlightRepository implements FlightRepository {
         try {
             PreparedStatement statement = connection.prepareStatement("INSERT INTO flights(id, origin, destination, departure_time, arrival_time, available_seats, price) VALUES (?, ?, ?, ?, ?, ?, ?)");
             statement.setString(1, flight.getId());
-            statement.setString(2, flight.getOrigin());
-            statement.setString(3, flight.getDestination());
+            statement.setString(2, flight.getRoute().getOrigin());
+            statement.setString(3, flight.getRoute().getDestination());
             statement.setTimestamp(4, Timestamp.valueOf(flight.getDepartureTime()));
             statement.setTimestamp(5, Timestamp.valueOf(flight.getArrivalTime()));
             statement.setInt(6, flight.getAvailableSeats());

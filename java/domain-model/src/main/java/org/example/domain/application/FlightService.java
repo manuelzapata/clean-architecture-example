@@ -4,6 +4,7 @@ import org.example.domain.application.interfaces.BookingRepository;
 import org.example.domain.application.interfaces.FlightRepository;
 import org.example.domain.model.Booking;
 import org.example.domain.model.Flight;
+import org.example.domain.model.Route;
 import org.example.domain.model.User;
 
 import java.time.LocalDate;
@@ -21,15 +22,15 @@ public class FlightService {
         this.bookingRepository = bookingRepository;
     }
 
-    public List<Flight> search(String origin, String destination, LocalDate departureDate, int passengers) {
+    public List<Flight> search(Route route, LocalDate departureDate, int passengers) {
 
         // Validate search criteria
-        if (origin == null || destination == null || departureDate == null) {
+        if (!route.isValid() || departureDate == null) {
             throw new IllegalArgumentException("Search criteria are invalid.");
         }
 
         // Perform search based on the given parameters
-        List<Flight> flights = flightRepository.search(origin, destination, departureDate);
+        List<Flight> flights = flightRepository.search(route, departureDate);
 
         // Filter out flights that are full
         flights = flights.stream()

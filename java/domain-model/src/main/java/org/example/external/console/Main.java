@@ -8,6 +8,7 @@ import org.example.domain.application.FlightService;
 import org.example.domain.application.interfaces.BookingRepository;
 import org.example.domain.application.interfaces.FlightRepository;
 import org.example.domain.model.Flight;
+import org.example.domain.model.Route;
 import org.example.external.persistence.InMemoryBookingRepository;
 import org.example.external.persistence.InMemoryFlightRepository;
 
@@ -20,7 +21,7 @@ public class Main {
             createSampleFlights(flightRepository);
 
             var service = new FlightService(flightRepository, bookingRepository);
-            var flights = service.search("Chicago", "Dallas", LocalDate.of(2023, 4, 3), 2);
+            var flights = service.search(new Route("Chicago", "Dallas"), LocalDate.of(2023, 4, 3), 2);
             System.out.println(flights);
         } catch (Exception exception) {
             exception.printStackTrace();
@@ -31,12 +32,12 @@ public class Main {
     private void createSampleFlights(FlightRepository repository) {
 
         // Create 5 flights
-        Flight flight1 = new Flight("UA101", "New York", "Los Angeles", LocalDateTime.of(2023, 4, 1, 7, 0), LocalDateTime.of(2023, 4, 1, 10, 30), 100, new BigDecimal(299.990));
-        Flight flight2 = new Flight("UA102", "Los Angeles", "New York", LocalDateTime.of(2023, 4, 2, 7, 0), LocalDateTime.of(2023, 4, 2, 10, 30), 50, new BigDecimal(399.99));
-        Flight flight3 = new Flight("AA201", "Chicago", "Dallas", LocalDateTime.of(2023, 4, 3, 7, 0), LocalDateTime.of(2023, 4, 3, 10, 30), 200, new BigDecimal(199.99));
-        Flight flight4 = new Flight("AA202", "Dallas", "Chicago", LocalDateTime.of(2023, 4, 4, 7, 0), LocalDateTime.of(2023, 4, 4, 10, 30), 150, new BigDecimal(259.99));
-        Flight flight5 = new Flight("DL301", "Miami", "Seattle", LocalDateTime.of(2023, 4, 5, 7, 0), LocalDateTime.of(2023, 4, 5, 10, 30), 300, new BigDecimal(449.99));
-        Flight flight6 = new Flight("AA203", "Chicago", "Dallas", LocalDateTime.of(2023, 4, 3, 14, 0), LocalDateTime.of(2023, 4, 3, 15, 30), 200, new BigDecimal(199.99));
+        Flight flight1 = new Flight("UA101", new Route("New York", "Los Angeles"), LocalDateTime.of(2023, 4, 1, 7, 0), LocalDateTime.of(2023, 4, 1, 10, 30), 100, new BigDecimal(299.990));
+        Flight flight2 = new Flight("UA102", new Route("Los Angeles", "New York"), LocalDateTime.of(2023, 4, 2, 7, 0), LocalDateTime.of(2023, 4, 2, 10, 30), 50, new BigDecimal(399.99));
+        Flight flight3 = new Flight("AA201", new Route("Chicago", "Dallas"), LocalDateTime.of(2023, 4, 3, 7, 0), LocalDateTime.of(2023, 4, 3, 10, 30), 200, new BigDecimal(199.99));
+        Flight flight4 = new Flight("AA202", new Route("Dallas", "Chicago"), LocalDateTime.of(2023, 4, 4, 7, 0), LocalDateTime.of(2023, 4, 4, 10, 30), 150, new BigDecimal(259.99));
+        Flight flight5 = new Flight("DL301", new Route("Miami", "Seattle"), LocalDateTime.of(2023, 4, 5, 7, 0), LocalDateTime.of(2023, 4, 5, 10, 30), 300, new BigDecimal(449.99));
+        Flight flight6 = new Flight("AA203", new Route("Chicago", "Dallas"), LocalDateTime.of(2023, 4, 3, 14, 0), LocalDateTime.of(2023, 4, 3, 15, 30), 200, new BigDecimal(199.99));
 
         // Save flights to repository
         repository.save(flight1);
