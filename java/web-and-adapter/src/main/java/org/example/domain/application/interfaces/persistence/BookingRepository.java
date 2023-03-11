@@ -1,4 +1,4 @@
-package org.example.domain.application.interfaces;
+package org.example.domain.application.interfaces.persistence;
 
 import org.example.domain.model.Booking;
 

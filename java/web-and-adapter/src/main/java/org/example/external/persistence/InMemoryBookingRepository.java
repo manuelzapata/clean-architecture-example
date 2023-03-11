@@ -1,6 +1,6 @@
 package org.example.external.persistence;
 
-import org.example.domain.application.interfaces.BookingRepository;
+import org.example.domain.application.interfaces.persistence.BookingRepository;
 import org.example.domain.model.Booking;
 
 import java.sql.*;

@@ -69,6 +69,7 @@ java/**/.idea/encodings.xml
 java/**/.idea/misc.xml
 java/**/.idea/vcs.xml
 java/**/.idea/modules.xml
+java/**/.idea/uiDesigner.xml
 java/**/.idea/*.iml
 java/**/.idea/modules
 java/**/*.iml
@@ -121,3 +122,6 @@ fabric.properties
 !.idea/runConfigurations
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all
+
+*.lst
+pom.properties

@@ -1,7 +1,7 @@
 package org.example.domain.application;
 
-import org.example.domain.application.interfaces.BookingRepository;
-import org.example.domain.application.interfaces.FlightRepository;
+import org.example.domain.application.interfaces.persistence.BookingRepository;
+import org.example.domain.application.interfaces.persistence.FlightRepository;
 import org.example.domain.model.Booking;
 import org.example.domain.model.Flight;
 import org.example.domain.model.Route;

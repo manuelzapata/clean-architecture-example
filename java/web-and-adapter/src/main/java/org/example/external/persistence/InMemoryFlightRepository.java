@@ -11,7 +11,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.domain.application.interfaces.FlightRepository;
+import org.example.domain.application.interfaces.persistence.FlightRepository;
 import org.example.domain.model.Flight;
 import org.example.domain.model.Route;
 
