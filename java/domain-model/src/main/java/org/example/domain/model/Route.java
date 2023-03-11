@@ -21,6 +21,11 @@ public class Route {
         if(this.destination == null || this.destination.isEmpty()){
             result = false;
         }
+
+        if(this.destination.equalsIgnoreCase(this.origin)) {
+            result = false;
+        }
+
         return result;
     }
 
