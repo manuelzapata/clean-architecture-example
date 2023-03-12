@@ -1,4 +1,4 @@
-package org.example.core.domain;
+package org.example.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

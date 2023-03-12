@@ -1,19 +1,19 @@
-package org.example.console;
+package org.example.external.console;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.example.core.application.FlightService;
-import org.example.core.application.interfaces.FlightRepository;
-import org.example.core.domain.Flight;
-import org.example.infrastructure.persistence.H2FlightRepository;
+import org.example.domain.application.FlightService;
+import org.example.domain.application.interfaces.FlightRepository;
+import org.example.domain.model.Flight;
+import org.example.external.persistence.InMemoryFlightRepository;
 
 public class Main {
 
     public void start() {
         try {
-            FlightRepository repository = new H2FlightRepository();
+            FlightRepository repository = new InMemoryFlightRepository();
             createSampleFlights(repository);
 
             var service = new FlightService(repository);

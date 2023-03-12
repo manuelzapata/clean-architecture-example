@@ -1,10 +1,10 @@
-package org.example.core.application;
+package org.example.domain.application;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import org.example.core.application.interfaces.FlightRepository;
-import org.example.core.domain.Flight;
+import org.example.domain.application.interfaces.FlightRepository;
+import org.example.domain.model.Flight;
 
 public class FlightService {
 

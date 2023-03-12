@@ -1,9 +1,9 @@
-package org.example.core.application.interfaces;
+package org.example.domain.application.interfaces;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import org.example.core.domain.Flight;
+import org.example.domain.model.Flight;
 
 public interface FlightRepository {
 

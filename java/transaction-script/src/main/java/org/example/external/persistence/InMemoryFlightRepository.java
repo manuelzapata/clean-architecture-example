@@ -1,4 +1,4 @@
-package org.example.infrastructure.persistence;
+package org.example.external.persistence;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,14 +11,14 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.example.core.application.interfaces.FlightRepository;
-import org.example.core.domain.Flight;
+import org.example.domain.application.interfaces.FlightRepository;
+import org.example.domain.model.Flight;
 
-public class H2FlightRepository implements FlightRepository {
+public class InMemoryFlightRepository implements FlightRepository {
 
     private Connection connection;
 
-    public H2FlightRepository() throws SQLException {
+    public InMemoryFlightRepository() throws SQLException {
         this.connection = DriverManager.getConnection("jdbc:h2:mem:flightdb");
         createTableIfNotExists();
     }

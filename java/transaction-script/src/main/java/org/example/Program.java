@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.console.Main;
+import org.example.external.console.Main;
 
 public class Program {
     public static void main(String[] args) {
