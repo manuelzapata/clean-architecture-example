@@ -13,20 +13,15 @@ public class Route {
     }
 
     public boolean isValid(){
-        boolean result = true;
-        if(this.origin == null || this.origin.isEmpty()){
-            result = false;
+        if(this.origin == null || this.origin.isBlank()){
+            return false;
         }
 
-        if(this.destination == null || this.destination.isEmpty()){
-            result = false;
+        if(this.destination == null || this.destination.isBlank()){
+            return false;
         }
 
-        if(this.destination.equalsIgnoreCase(this.origin)) {
-            result = false;
-        }
-
-        return result;
+        return !this.destination.equalsIgnoreCase(this.origin);
     }
 
     public String getOrigin() {
