@@ -81,7 +81,6 @@ public class InMemoryFlightRepository implements FlightRepository {
         try (Statement statement = connection.createStatement()) {
             statement.execute(sql);
         }
-        Statement statement = connection.createStatement();
     }
 
 }
